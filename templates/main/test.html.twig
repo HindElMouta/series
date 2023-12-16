@@ -1,0 +1,61 @@
+{% extends "base.html.twig" %}
+{% block body %}
+
+<h1>testou</h1>
+    <div>{{ mySerie.title }} {{ autreVar }}</div>
+<div>
+    {# crée une variable ! #}
+    {% set name = "<strong>Guillaume</strong>" %}
+    {% set var ='titre en gras' %}
+    <h2>{{ name}}</h2>
+
+    <h4>----------------------------------------------------------------------</h4>
+
+    {# crée une variable avec filtre! #}
+    <h3>crée une variable avec filtre!</h3>
+    {% set name = "<strong>Guillaume</strong>" %}
+    <h2>{{ name | length }}</h2>
+
+    <h4>----------------------------------------------------------------------</h4>
+
+    {# crée un tableau #}
+    {% set colors = ["orange", "brown", "turquoise", "blue"] %}
+    {% for color in colors %}
+        <div style="background-color:{{ color }} ">{{ color }}</div>
+    {% endfor %}
+
+    <h4>----------------------------------------------------------------------</h4>
+
+    {# crée un tableau avec filtre!#}
+    <h3>crée un tableau avec filtre!</h3>
+    {% set colors = ["orange", "brown", "turquoise", "blue"] %}
+    <div> nombre de couleurs : {{ colors | length }}</div>
+    <div>{{ colors | join(' / ') }}</div>
+    {% for color in colors %}
+        <div>{{ loop.last }}</div>
+        <div style="background-color:{{ color }} ">{{ color }}</div>
+    {% endfor %}
+
+    <h4>----------------------------------------------------------------------</h4>
+
+    {# crée un filtre pour la date!#}
+    <h3>Date avec filtre!</h3>
+    <div>{{ "+1 year" | date('Y') }}</div>
+
+    <h4>----------------------------------------------------------------------</h4>
+
+    {# un objet #}
+    {% set book = {
+        title: 'Pifpaf',
+        year: 2000,
+        author: "John Doe"}
+    %}
+    <h3>{{ book.author }}</h3>
+    <div>
+        {% for key, val in book %}
+            <div>{{ key }} : {{ val }}</div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+{% block title %}{{ parent()}} | testounet{% endblock %}
